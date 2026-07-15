@@ -352,15 +352,16 @@ function CaseCard({ item, onOpen }: { item: CaseStudy; onOpen: () => void }) {
       onClick={onOpen}
       className="group relative flex flex-col rounded-2xl border border-hairline bg-[oklch(0.185_0_0)] p-5 text-left transition-all hover:-translate-y-0.5 hover:border-sage/40"
     >
-      <div className="flex items-center justify-between text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+      <div className="relative flex items-center justify-between text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
         <span>{item.platform}</span>
+        {item.badge && (
+          <span className="absolute left-1/2 -translate-x-1/2 rounded-full bg-sage/15 px-2 py-0.5 text-[10px] font-semibold text-sage">
+            {item.badge}
+          </span>
+        )}
         <span>{item.category}</span>
       </div>
-      {item.badge && (
-        <span className="absolute right-4 top-4 rounded-full bg-sage/15 px-2 py-0.5 text-[10px] font-semibold text-sage">
-          {item.badge}
-        </span>
-      )}
+
       <div className="mt-6">
         <div className="font-display text-3xl font-bold text-sage">{item.metric}</div>
         <div className="mt-1 text-xs font-medium text-muted-foreground">{item.subMetric}</div>
@@ -612,25 +613,28 @@ function Workflow() {
         </div>
         <div className="relative mt-14">
           <div className="pointer-events-none absolute left-0 right-0 top-6 hidden h-px beam-line lg:block" />
-          <div className="grid gap-5 lg:grid-cols-5">
+          <div className="grid items-start gap-5 lg:grid-cols-5">
             {STEPS.map((s) => (
               <div
                 key={s.n}
-                className="group relative rounded-2xl border border-hairline bg-surface p-5 transition-all hover:border-sage/50 hover:-translate-y-1"
+                className="group relative h-auto self-start rounded-2xl border border-hairline bg-surface p-5 transition-all hover:border-sage/50 hover:-translate-y-1"
               >
                 <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full border border-sage/40 bg-background font-display text-sm font-bold text-sage">
                   {s.n}
                 </div>
                 <h3 className="mt-4 text-base font-semibold text-foreground">{s.t}</h3>
-                <p className="mt-3 max-h-0 overflow-hidden text-sm leading-relaxed text-muted-foreground opacity-0 transition-all duration-500 group-hover:max-h-96 group-hover:opacity-100 lg:group-hover:mt-3">
-                  {s.d}
-                </p>
+                <div className="grid grid-rows-[0fr] transition-all duration-500 group-hover:grid-rows-[1fr] group-focus-within:grid-rows-[1fr] lg:group-hover:mt-3">
+                  <p className="overflow-hidden text-sm leading-relaxed text-muted-foreground">
+                    {s.d}
+                  </p>
+                </div>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground lg:hidden">
                   {s.d}
                 </p>
               </div>
             ))}
           </div>
+
         </div>
       </div>
     </section>
@@ -1070,7 +1074,7 @@ function AuditForm() {
       await fetch(GOOGLE_SHEETS_WEBHOOK_URL, {
         method: "POST",
         mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "text/plain" },
         body: JSON.stringify(form),
       });
     } catch {
