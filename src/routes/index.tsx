@@ -352,15 +352,16 @@ function CaseCard({ item, onOpen }: { item: CaseStudy; onOpen: () => void }) {
       onClick={onOpen}
       className="group relative flex flex-col rounded-2xl border border-hairline bg-[oklch(0.185_0_0)] p-5 text-left transition-all hover:-translate-y-0.5 hover:border-sage/40"
     >
-      <div className="flex items-center justify-between text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+      <div className="relative flex items-center justify-between text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
         <span>{item.platform}</span>
+        {item.badge && (
+          <span className="absolute left-1/2 -translate-x-1/2 rounded-full bg-sage/15 px-2 py-0.5 text-[10px] font-semibold text-sage">
+            {item.badge}
+          </span>
+        )}
         <span>{item.category}</span>
       </div>
-      {item.badge && (
-        <span className="absolute right-4 top-4 rounded-full bg-sage/15 px-2 py-0.5 text-[10px] font-semibold text-sage">
-          {item.badge}
-        </span>
-      )}
+
       <div className="mt-6">
         <div className="font-display text-3xl font-bold text-sage">{item.metric}</div>
         <div className="mt-1 text-xs font-medium text-muted-foreground">{item.subMetric}</div>
