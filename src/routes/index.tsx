@@ -613,25 +613,28 @@ function Workflow() {
         </div>
         <div className="relative mt-14">
           <div className="pointer-events-none absolute left-0 right-0 top-6 hidden h-px beam-line lg:block" />
-          <div className="grid gap-5 lg:grid-cols-5">
+          <div className="grid items-start gap-5 lg:grid-cols-5">
             {STEPS.map((s) => (
               <div
                 key={s.n}
-                className="group relative rounded-2xl border border-hairline bg-surface p-5 transition-all hover:border-sage/50 hover:-translate-y-1"
+                className="group relative h-auto self-start rounded-2xl border border-hairline bg-surface p-5 transition-all hover:border-sage/50 hover:-translate-y-1"
               >
                 <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full border border-sage/40 bg-background font-display text-sm font-bold text-sage">
                   {s.n}
                 </div>
                 <h3 className="mt-4 text-base font-semibold text-foreground">{s.t}</h3>
-                <p className="mt-3 max-h-0 overflow-hidden text-sm leading-relaxed text-muted-foreground opacity-0 transition-all duration-500 group-hover:max-h-96 group-hover:opacity-100 lg:group-hover:mt-3">
-                  {s.d}
-                </p>
+                <div className="grid grid-rows-[0fr] transition-all duration-500 group-hover:grid-rows-[1fr] group-focus-within:grid-rows-[1fr] lg:group-hover:mt-3">
+                  <p className="overflow-hidden text-sm leading-relaxed text-muted-foreground">
+                    {s.d}
+                  </p>
+                </div>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground lg:hidden">
                   {s.d}
                 </p>
               </div>
             ))}
           </div>
+
         </div>
       </div>
     </section>
