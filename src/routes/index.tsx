@@ -497,7 +497,7 @@ function CaseStudies() {
           nyata
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-sm text-muted-foreground">
-          21 case study lintas platform dengan angka yang bisa diverifikasi. Setiap keputusan
+          12 case study lintas platform dengan angka yang bisa diverifikasi. Setiap keputusan
           berbasis data, setiap hasil bisa dipertanggungjawabkan.
         </p>
       </div>
