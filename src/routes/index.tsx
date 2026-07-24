@@ -348,27 +348,30 @@ function SectionBadge({ children }: { children: React.ReactNode }) {
 /* ---------------- proven track record ---------------- */
 
 import trackShopee from "@/assets/shopee-2.png.asset.json";
+import trackTiktok from "@/assets/tiktok.png.asset.json";
+import trackCpas from "@/assets/cpas.png.asset.json";
 
 const TRACK_RECORDS = [
   {
     metric: "2.15 Miliar / Bulan",
     sub: "Growth +272%",
     desc: "Optimasi Shopee Ads agresif yang menghasilkan lonjakan pesanan hingga 11.881 orderan dan menembus omzet Rp 2.15 Miliar hanya dalam 30 hari.",
-    image: trackShopee.url,
+    image: trackShopee.url as string | null,
   },
   {
     metric: "6 Miliar GMV",
     sub: "125.606 Produk Terjual",
     desc: "Menguasai algoritma FYP dan konversi TikTok Shop. Mencetak pertumbuhan GMV secara masif dengan mendatangkan lebih dari 2.8 Juta pengunjung berkualitas.",
-    image: null as string | null,
+    image: trackTiktok.url as string | null,
   },
   {
     metric: "ROAS Tembus 32x",
     sub: "Total Revenue Rp 2.79 Miliar",
     desc: "Skalasi Meta CPAS super efisien. Menjaga rata-rata ROAS di angka 26x dengan total nilai konversi menyentuh 2.79 Miliar secara konsisten.",
-    image: null as string | null,
+    image: trackCpas.url as string | null,
   },
 ];
+
 
 function TrackRecordLightbox({
   src,
