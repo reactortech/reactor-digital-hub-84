@@ -1404,6 +1404,7 @@ function Landing() {
       <main>
         <Hero />
         <StatsBanner />
+        <TrackRecord />
         <CaseStudies />
         <Workflow />
         <Collaborate />
