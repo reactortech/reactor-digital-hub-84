@@ -4,6 +4,7 @@ import {
   ArrowRight,
   Check,
   ChevronDown,
+  Image,
   MapPin,
   MessageCircle,
   Minus,
