@@ -806,7 +806,7 @@ const SERVICE_TABS: Record<string, Service[]> = {
     {
       title: "TikTok Shop Ads Mentoring",
       price: "Rp 2.500.000",
-      sub: "(Periode 1 Bulan)",
+      sub: "",
       features: [
         "Materi fundamental algoritma TikTok Ads",
         "Membaca metrik dashboard",
@@ -820,7 +820,7 @@ const SERVICE_TABS: Record<string, Service[]> = {
     {
       title: "Shopee Ads Mentoring",
       price: "Rp 1.500.000",
-      sub: "(Periode 1 Bulan)",
+      sub: "",
       features: [
         "Materi fundamental Shopee",
         "Membaca metrik dashboard",
@@ -834,7 +834,7 @@ const SERVICE_TABS: Record<string, Service[]> = {
     {
       title: "CPAS Ads Mentoring",
       price: "Rp 2.000.000",
-      sub: "(Periode 1 Bulan)",
+      sub: "",
       features: [
         "Materi fundamental CPAS",
         "Membaca metrik dashboard",
@@ -848,7 +848,7 @@ const SERVICE_TABS: Record<string, Service[]> = {
     {
       title: "Meta Ads Mentoring",
       price: "Rp 2.000.000",
-      sub: "(Periode 1 Bulan)",
+      sub: "",
       features: [
         "Materi fundamental Meta Ads",
         "Membaca metrik dashboard",
