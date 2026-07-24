@@ -370,7 +370,50 @@ const TRACK_RECORDS = [
   },
 ];
 
+function TrackRecordLightbox({
+  src,
+  alt,
+  onClose,
+}: {
+  src: string;
+  alt: string;
+  onClose: () => void;
+}) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    window.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [onClose]);
+
+  return (
+    <div
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4"
+      onClick={onClose}
+    >
+      <button
+        onClick={onClose}
+        className="absolute right-5 top-5 z-10 rounded-full bg-white/10 p-2 text-white transition-colors hover:bg-white/20"
+        aria-label="Close"
+      >
+        <X className="h-6 w-6" />
+      </button>
+      <img
+        src={src}
+        alt={alt}
+        className="max-h-[90vh] max-w-[90vw] object-contain"
+        onClick={(e) => e.stopPropagation()}
+      />
+    </div>
+  );
+}
+
 function TrackRecord() {
+  const [lightbox, setLightbox] = useState<string | null>(null);
+
   return (
     <section id="track-record" className="bg-[#111111]">
       <div className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
@@ -391,13 +434,22 @@ function TrackRecord() {
               key={i}
               className="overflow-hidden rounded-2xl border border-gray-800 bg-[#1A1A1A]"
             >
-              <div className="flex aspect-[4/3] w-full items-center justify-center overflow-hidden bg-gray-800">
+              <button
+                type="button"
+                onClick={() => c.image && setLightbox(c.image)}
+                disabled={!c.image}
+                className={`flex aspect-[4/3] w-full items-center justify-center overflow-hidden bg-gray-800 ${
+                  c.image
+                    ? "cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:opacity-80"
+                    : "cursor-default"
+                }`}
+              >
                 {c.image ? (
                   <img src={c.image} alt={c.metric} className="h-full w-full object-cover" />
                 ) : (
                   <Image className="h-10 w-10 text-muted-foreground/40" />
                 )}
-              </div>
+              </button>
               <div className="p-6">
                 <div className="font-display text-2xl font-bold text-sage">{c.metric}</div>
                 <div className="mt-1 text-sm font-semibold text-foreground">{c.sub}</div>
@@ -407,6 +459,14 @@ function TrackRecord() {
           ))}
         </div>
       </div>
+
+      {lightbox && (
+        <TrackRecordLightbox
+          src={lightbox}
+          alt="Dashboard Screenshot"
+          onClose={() => setLightbox(null)}
+        />
+      )}
     </section>
   );
 }
