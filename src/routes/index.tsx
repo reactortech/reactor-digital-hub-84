@@ -863,7 +863,7 @@ const SERVICE_TABS: Record<string, Service[]> = {
   "Strategic Consulting": [
     {
       title: "Deep Dive Audit",
-      price: "Rp 350.000 / Sesi",
+      price: "Rp 500.000 / Sesi",
       sub: "(Durasi 90 Menit)",
       features: [
         "Sesi konsultasi tatap muka online (Meet/Zoom)",
