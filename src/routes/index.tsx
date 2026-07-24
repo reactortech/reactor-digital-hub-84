@@ -347,7 +347,7 @@ function SectionBadge({ children }: { children: React.ReactNode }) {
 
 /* ---------------- proven track record ---------------- */
 
-import trackShopee from "@/assets/track-shopee.png.asset.json";
+import trackShopee from "@/assets/shopee-2.png.asset.json";
 
 const TRACK_RECORDS = [
   {
