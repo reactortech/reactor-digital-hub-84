@@ -909,10 +909,9 @@ function Services() {
 
         {tab === "Private Mentoring" && (
           <div className="mx-auto mt-8 max-w-3xl rounded-2xl border border-sage/25 bg-surface p-5 text-sm text-muted-foreground">
-            <span className="font-semibold text-sage">Fasilitas Umum (Periode 1 Bulan):</span> Sesi
-            privat via Google Meet/Zoom, praktik langsung dengan dashboard bisnis Anda sendiri,
-            rekaman sesi pembelajaran, dan akses tanya-jawab via WhatsApp selama periode program
-            berjalan.
+            <span className="font-semibold text-sage">Benefit:</span> Sesi privat via Google Meet/Zoom,
+            praktik langsung dengan dashboard bisnis Anda sendiri, rekaman sesi pembelajaran, dan
+            akses tanya-jawab via WhatsApp selama periode program berjalan.
           </div>
         )}
 
