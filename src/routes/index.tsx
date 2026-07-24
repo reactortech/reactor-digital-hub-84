@@ -391,8 +391,12 @@ function TrackRecord() {
               key={i}
               className="overflow-hidden rounded-2xl border border-gray-800 bg-[#1A1A1A]"
             >
-              <div className="flex aspect-[4/3] w-full items-center justify-center bg-gray-800">
-                <Image className="h-10 w-10 text-muted-foreground/40" />
+              <div className="flex aspect-[4/3] w-full items-center justify-center overflow-hidden bg-gray-800">
+                {c.image ? (
+                  <img src={c.image} alt={c.metric} className="h-full w-full object-cover" />
+                ) : (
+                  <Image className="h-10 w-10 text-muted-foreground/40" />
+                )}
               </div>
               <div className="p-6">
                 <div className="font-display text-2xl font-bold text-sage">{c.metric}</div>
