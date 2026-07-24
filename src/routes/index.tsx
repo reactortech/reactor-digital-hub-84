@@ -347,21 +347,26 @@ function SectionBadge({ children }: { children: React.ReactNode }) {
 
 /* ---------------- proven track record ---------------- */
 
+import trackShopee from "@/assets/track-shopee.png.asset.json";
+
 const TRACK_RECORDS = [
   {
     metric: "2.15 Miliar / Bulan",
     sub: "Growth +272%",
     desc: "Optimasi Shopee Ads agresif yang menghasilkan lonjakan pesanan hingga 11.881 orderan dan menembus omzet Rp 2.15 Miliar hanya dalam 30 hari.",
+    image: trackShopee.url,
   },
   {
     metric: "6 Miliar GMV",
     sub: "125.606 Produk Terjual",
     desc: "Menguasai algoritma FYP dan konversi TikTok Shop. Mencetak pertumbuhan GMV secara masif dengan mendatangkan lebih dari 2.8 Juta pengunjung berkualitas.",
+    image: null as string | null,
   },
   {
     metric: "ROAS Tembus 32x",
     sub: "Total Revenue Rp 2.79 Miliar",
     desc: "Skalasi Meta CPAS super efisien. Menjaga rata-rata ROAS di angka 26x dengan total nilai konversi menyentuh 2.79 Miliar secara konsisten.",
+    image: null as string | null,
   },
 ];
 
@@ -386,8 +391,12 @@ function TrackRecord() {
               key={i}
               className="overflow-hidden rounded-2xl border border-gray-800 bg-[#1A1A1A]"
             >
-              <div className="flex aspect-[4/3] w-full items-center justify-center bg-gray-800">
-                <Image className="h-10 w-10 text-muted-foreground/40" />
+              <div className="flex aspect-[4/3] w-full items-center justify-center overflow-hidden bg-gray-800">
+                {c.image ? (
+                  <img src={c.image} alt={c.metric} className="h-full w-full object-cover" />
+                ) : (
+                  <Image className="h-10 w-10 text-muted-foreground/40" />
+                )}
               </div>
               <div className="p-6">
                 <div className="font-display text-2xl font-bold text-sage">{c.metric}</div>
