@@ -11,4 +11,4 @@
 
 <!-- LOVABLE:END -->
 
-Keep Ads Management promotion prices and the Jakarta month-end countdown in `src/lib/service-promo.ts` so the visible offers and tests share one source of truth.
+Keep service card prices and the Jakarta month-end countdown in `src/lib/service-promo.ts` so visible offers and tests share one source of truth.

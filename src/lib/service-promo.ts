@@ -21,6 +21,13 @@ export const ADS_SERVICE_PROMOS = {
   },
 } as const;
 
+export const MENTORING_SESSION_PRICES = {
+  "TikTok Shop Ads Mentoring": "Rp 500.000 / Sesi",
+  "Shopee Ads Mentoring": "Rp 350.000 / Sesi",
+  "CPAS Ads Mentoring": "Rp 350.000 / Sesi",
+  "Meta Ads Mentoring": "Rp 350.000 / Sesi",
+} as const;
+
 export function getJakartaMonthEndCountdown(now: Date) {
   const dateParts = new Intl.DateTimeFormat("en-US", {
     timeZone: "Asia/Jakarta",
