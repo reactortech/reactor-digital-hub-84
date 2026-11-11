@@ -26,6 +26,17 @@ export const Route = createFileRoute("/")({
         content:
           "Scale-up brand berbasis data. TikTok Ads, Shopee Ads, CPAS, Meta Ads oleh Reactor Digital.",
       },
+      {
+        property: "og:title",
+        content: "Reactor Digital — Performance Marketing Agency",
+      },
+      {
+        property: "og:description",
+        content:
+          "Scale-up brand berbasis data. TikTok Ads, Shopee Ads, CPAS, Meta Ads oleh Reactor Digital.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Landing,
@@ -1016,7 +1027,9 @@ const SERVICE_TABS: Record<string, Service[]> = {
 };
 
 function PromoCountdown() {
-  const [remaining, setRemaining] = useState<ReturnType<typeof getJakartaMonthEndCountdown> | null>(null);
+  const [remaining, setRemaining] = useState<
+    ReturnType<typeof getJakartaMonthEndCountdown> | null
+  >(null);
 
   useEffect(() => {
     const updateCountdown = () => setRemaining(getJakartaMonthEndCountdown(new Date()));
@@ -1097,7 +1110,9 @@ function Services() {
               {s.promoPrice ? (
                 <div className="mt-3">
                   <div className="text-sm text-muted-foreground line-through">{s.price}</div>
-                  <div className="mt-0.5 font-display text-2xl font-bold text-sage">{s.promoPrice}</div>
+                  <div className="mt-0.5 font-display text-2xl font-bold text-sage">
+                    {s.promoPrice}
+                  </div>
                   <p className="mt-1 text-xs text-muted-foreground">
                     Harga promo dikunci selama kontrak pertama 3 bulan
                   </p>
