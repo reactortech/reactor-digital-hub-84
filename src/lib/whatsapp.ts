@@ -1,8 +1,7 @@
 // WhatsApp Lead Rotator (Round Robin) — one visible CTA, silent distribution.
 const ADMINS = [
-  { name: "Sena", phone: "6285147861755" },
-  { name: "Agus", phone: "62895365249696" },
   { name: "Arif", phone: "6285602298057" },
+  { name: "Agus", phone: "62895365249696" },
 ];
 
 let cursor = 0;
