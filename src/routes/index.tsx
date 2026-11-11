@@ -24,15 +24,15 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Reactor Digital — Performance Marketing Agency" },
+      { title: "Reactor Digital — Freelance Performance Marketing" },
       {
         name: "description",
         content:
-          "Scale-up brand berbasis data. TikTok Ads, Shopee Ads, CPAS, Meta Ads oleh Reactor Digital.",
+          "Freelancer Performance Marketing untuk scale-up brand berbasis data melalui TikTok Ads, Shopee Ads, CPAS, dan Meta Ads.",
       },
       {
         property: "og:title",
-        content: "Reactor Digital — Performance Marketing Agency",
+        content: "Reactor Digital — Freelance Performance Marketing",
       },
       {
         property: "og:description",
@@ -205,11 +205,11 @@ function Hero() {
             <Highlight>Data Strategis</Highlight> Sebagai Pondasi Pertumbuhan Nyata.
           </h1>
           <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-muted-foreground">
-            Kami adalah agensi Performance Marketing spesialis akselerasi growth yang telah
-            dipercaya lebih dari puluhan brand sebagai growth partner. Berfokus pada TikTok Ads,
-            Shopee Ads, CPAS, dan Meta Ads, kami tidak sekadar mengelola dan mengoptimasi iklan,
-            tetapi juga memberikan insight bisnis up-to-date melalui komunikasi dua arah yang intens
-            dan transparansi data sepenuhnya..
+            Saya adalah freelancer Performance Marketing spesialis akselerasi growth, dipercaya
+            oleh puluhan brand sebagai growth partner. Berfokus pada TikTok Ads, Shopee Ads, CPAS,
+            dan Meta Ads, saya tidak sekadar mengelola dan mengoptimasi iklan, tetapi juga
+            memberikan insight bisnis terkini melalui komunikasi dua arah yang intens dan
+            transparansi data sepenuhnya.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
             <button
@@ -244,7 +244,7 @@ function Hero() {
             top={
               <div className="flex items-center gap-2">
                 <span className="h-1.5 w-1.5 rounded-full bg-sage animate-pulse-dot" />
-                Agency Identity
+                Freelance Identity
               </div>
             }
             metric={<span className="text-foreground text-lg">Reactor Digital</span>}
@@ -1450,7 +1450,7 @@ function FinalCta() {
   return (
     <section className="bg-[#09090B]">
       <div className="mx-auto max-w-4xl px-5 py-28 text-center lg:px-8">
-        <SectionBadge>Slot Konsultasi Agensi Terbatas</SectionBadge>
+        <SectionBadge>Slot Konsultasi Freelance Terbatas</SectionBadge>
         <h2 className="mt-5 font-display text-3xl font-bold leading-tight text-foreground md:text-[34px]">
           Ciptakan <Highlight>Pertumbuhan Brand</Highlight> Dari Presisi Data Bersama Kami!
         </h2>
