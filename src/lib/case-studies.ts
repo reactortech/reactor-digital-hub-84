@@ -1,7 +1,7 @@
 export type CaseStudy = {
   id: number;
   platform: "TikTok Ads" | "Shopee Ads" | "CPAS Ads" | "Meta Ads" | "Affiliate Mgt";
-  category: "Fashion" | "Skin Care" | "F&B" | "Tech & Gadget" | "Service" | "Kids" | "Personal Beauty" | "Supplement";
+  category: "Fashion" | "Skin Care" | "F&B" | "Tech & Gadget" | "Service" | "Kids" | "Personal Beauty" | "Supplement" | "Aksesoris";
   metric: string;
   subMetric: string;
   title: string;
@@ -217,7 +217,44 @@ export const CASE_STUDIES: CaseStudy[] = [
     strategi:
       "Testing audiens, produksi konten visual relevan, optimasi copywriting iklan, dan manajemen fanpage. CPL sukses ditekan ke angka Rp 9.343.",
   },
+  {
+    id: 13,
+    platform: "CPAS Ads",
+    category: "Skin Care",
+    metric: "507 Juta / Bulan",
+    subMetric: "ROAS 17.67x",
+    title: "Skincare",
+    badge: "New Launch",
+    table: [
+      { label: "Ad Spend", before: "Rp 0 (Juni)", after: "Rp 28.680.605 (Juli)" },
+      { label: "Revenue", before: "Rp 0 (Juni)", after: "Sekitar Rp 507 Juta (Juli)" },
+      { label: "Purchases", before: "—", after: "2.051 (Juli)" },
+      { label: "ROAS", before: "—", after: "17.67x (Juli)" },
+    ],
+    masalah: "Pada bulan Juni toko belum ditangani, sehingga belum ada spend maupun revenue.",
+    strategi:
+      "Memulai pengelolaan CPAS pada Juli dan membangun performa sejak bulan pertama hingga menghasilkan sekitar Rp 507 Juta revenue dengan 2.051 purchases.",
+  },
+  {
+    id: 14,
+    platform: "CPAS Ads",
+    category: "Aksesoris",
+    metric: "449 Juta / Bulan",
+    subMetric: "ROAS 23.41x",
+    title: "Aksesoris",
+    badge: "Best Growth",
+    table: [
+      { label: "Ad Spend", before: "Rp 17.583.937 (September)", after: "Rp 19.171.750 (Oktober)" },
+      { label: "Revenue", before: "Rp 375 Juta (September)", after: "Rp 449 Juta (Oktober)" },
+      { label: "Purchases", before: "3.980 (September)", after: "4.656 (Oktober)" },
+      { label: "ROAS", before: "21.35x (September)", after: "23.41x (Oktober)" },
+    ],
+    masalah:
+      "Performa CPAS perlu terus ditingkatkan dari bulan ke bulan, dengan pertumbuhan revenue dan volume pembelian yang tetap efisien.",
+    strategi:
+      "Optimasi berkelanjutan dari September ke Oktober meningkatkan revenue bulanan dari Rp 375 Juta menjadi Rp 449 Juta, sekaligus menaikkan ROAS dari 21.35x ke 23.41x.",
+  },
 ];
 
-export const PLATFORMS = ["All Platforms", "TikTok Ads", "Shopee Ads", "Meta Ads"] as const;
-export const CATEGORIES = ["All Categories", "Fashion", "Kids", "Skin Care", "Supplement", "Service"] as const;
+export const PLATFORMS = ["All Platforms", "TikTok Ads", "Shopee Ads", "Meta Ads", "CPAS Ads"] as const;
+export const CATEGORIES = ["All Categories", "Fashion", "Kids", "Skin Care", "Supplement", "Service", "Aksesoris"] as const;
