@@ -15,6 +15,7 @@ import {
 import logo from "@/assets/logo_reactordigital.png";
 import { buildAuditText, buildWaUrl, defaultConsultText, openWa } from "@/lib/whatsapp";
 import { CASE_STUDIES, CATEGORIES, PLATFORMS, type CaseStudy } from "@/lib/case-studies";
+import { ADS_SERVICE_PROMOS, getJakartaMonthEndCountdown } from "@/lib/service-promo";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -826,6 +827,7 @@ function Collaborate() {
 type Service = {
   title: string;
   price: string;
+  promoPrice?: string;
   sub: string;
   features: string[];
 };
@@ -834,7 +836,8 @@ const SERVICE_TABS: Record<string, Service[]> = {
   "Ads Management": [
     {
       title: "TikTok Shop Ads",
-      price: "Rp 3.500.000 / Bulan",
+      price: ADS_SERVICE_PROMOS["TikTok Shop Ads"].regularPrice,
+      promoPrice: ADS_SERVICE_PROMOS["TikTok Shop Ads"].promoPrice,
       sub: "(Untuk 1 Toko)",
       features: [
         "Testing dan optimasi",
@@ -848,7 +851,8 @@ const SERVICE_TABS: Record<string, Service[]> = {
     },
     {
       title: "Shopee Ads",
-      price: "Rp 2.500.000 / Bulan",
+      price: ADS_SERVICE_PROMOS["Shopee Ads"].regularPrice,
+      promoPrice: ADS_SERVICE_PROMOS["Shopee Ads"].promoPrice,
       sub: "(Untuk 1 Toko)",
       features: [
         "Testing dan optimasi",
@@ -861,7 +865,8 @@ const SERVICE_TABS: Record<string, Service[]> = {
     },
     {
       title: "CPAS Ads",
-      price: "Rp 2.500.000 / Bulan",
+      price: ADS_SERVICE_PROMOS["CPAS Ads"].regularPrice,
+      promoPrice: ADS_SERVICE_PROMOS["CPAS Ads"].promoPrice,
       sub: "(Untuk 1 Toko)",
       features: [
         "Testing dan optimasi",
@@ -875,7 +880,8 @@ const SERVICE_TABS: Record<string, Service[]> = {
     },
     {
       title: "Meta Ads (Lead Gen)",
-      price: "Rp 3.500.000 / Bulan",
+      price: ADS_SERVICE_PROMOS["Meta Ads (Lead Gen)"].regularPrice,
+      promoPrice: ADS_SERVICE_PROMOS["Meta Ads (Lead Gen)"].promoPrice,
       sub: "(Suplai leads untuk 1 brand/produk)",
       features: [
         "Testing dan optimasi",
@@ -889,7 +895,8 @@ const SERVICE_TABS: Record<string, Service[]> = {
     },
     {
       title: "All Channel Omnichannel",
-      price: "Rp 11.000.000 / Bulan",
+      price: ADS_SERVICE_PROMOS["All Channel Omnichannel"].regularPrice,
+      promoPrice: ADS_SERVICE_PROMOS["All Channel Omnichannel"].promoPrice,
       sub: "(Omnichannel Ads Management)",
       features: [
         "Testing dan optimasi",
@@ -1008,6 +1015,24 @@ const SERVICE_TABS: Record<string, Service[]> = {
   ],
 };
 
+function PromoCountdown() {
+  const [remaining, setRemaining] = useState<ReturnType<typeof getJakartaMonthEndCountdown> | null>(null);
+
+  useEffect(() => {
+    const updateCountdown = () => setRemaining(getJakartaMonthEndCountdown(new Date()));
+    updateCountdown();
+    const interval = window.setInterval(updateCountdown, 1000);
+    return () => window.clearInterval(interval);
+  }, []);
+
+  const pad = (value: number) => String(value).padStart(2, "0");
+  const label = remaining
+    ? `${remaining.days} hari ${pad(remaining.hours)}:${pad(remaining.minutes)}:${pad(remaining.seconds)}`
+    : "—";
+
+  return <time className="font-semibold tabular-nums text-foreground">{label}</time>;
+}
+
 function Services() {
   const tabs = Object.keys(SERVICE_TABS);
   const [tab, setTab] = useState(tabs[0]);
@@ -1021,6 +1046,15 @@ function Services() {
             Investasi Growth Yang Terukur
           </h2>
         </div>
+        {tab === "Ads Management" && (
+          <div className="mx-auto mt-6 flex max-w-fit flex-wrap items-center justify-center gap-x-2 gap-y-1 rounded-full border border-sage/25 bg-surface px-4 py-2 text-center text-xs text-muted-foreground sm:text-sm">
+            <span className="font-semibold text-sage">Diskon 20% semua layanan bulan ini</span>
+            <span aria-hidden="true">·</span>
+            <span>Sisa 3 slot</span>
+            <span aria-hidden="true">·</span>
+            <span>berakhir dalam <PromoCountdown /></span>
+          </div>
+        )}
         <div className="mt-8 flex flex-wrap justify-center gap-2">
           {tabs.map((t) => (
             <button
@@ -1052,8 +1086,25 @@ function Services() {
               key={s.title}
               className="flex flex-col rounded-2xl border border-hairline bg-surface p-6 transition-colors hover:border-sage/40"
             >
-              <h3 className="text-base font-semibold text-foreground">{s.title}</h3>
-              <div className="mt-3 font-display text-2xl font-bold text-sage">{s.price}</div>
+              <div className="flex items-start justify-between gap-3">
+                <h3 className="text-base font-semibold text-foreground">{s.title}</h3>
+                {s.promoPrice && (
+                  <span className="shrink-0 rounded-full bg-sage/10 px-2.5 py-1 text-[11px] font-semibold text-sage">
+                    Diskon 20%
+                  </span>
+                )}
+              </div>
+              {s.promoPrice ? (
+                <div className="mt-3">
+                  <div className="text-sm text-muted-foreground line-through">{s.price}</div>
+                  <div className="mt-0.5 font-display text-2xl font-bold text-sage">{s.promoPrice}</div>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    Harga promo dikunci selama kontrak pertama 3 bulan
+                  </p>
+                </div>
+              ) : (
+                <div className="mt-3 font-display text-2xl font-bold text-sage">{s.price}</div>
+              )}
               <div className="text-xs text-muted-foreground">{s.sub}</div>
               <ul className="mt-5 flex-1 space-y-2.5">
                 {s.features.map((f) => (
