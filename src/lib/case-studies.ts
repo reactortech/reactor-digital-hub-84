@@ -256,5 +256,5 @@ export const CASE_STUDIES: CaseStudy[] = [
   },
 ];
 
-export const PLATFORMS = ["All Platforms", "TikTok Ads", "Shopee Ads", "Meta Ads"] as const;
-export const CATEGORIES = ["All Categories", "Fashion", "Kids", "Skin Care", "Supplement", "Service"] as const;
+export const PLATFORMS = ["All Platforms", "TikTok Ads", "Shopee Ads", "Meta Ads", "CPAS Ads"] as const;
+export const CATEGORIES = ["All Categories", "Fashion", "Kids", "Skin Care", "Supplement", "Service", "Aksesoris"] as const;
