@@ -15,7 +15,11 @@ import {
 import logo from "@/assets/logo_reactordigital.png";
 import { buildAuditText, buildWaUrl, defaultConsultText, openWa } from "@/lib/whatsapp";
 import { CASE_STUDIES, CATEGORIES, PLATFORMS, type CaseStudy } from "@/lib/case-studies";
-import { ADS_SERVICE_PROMOS, getJakartaMonthEndCountdown } from "@/lib/service-promo";
+import {
+  ADS_SERVICE_PROMOS,
+  getJakartaMonthEndCountdown,
+  MENTORING_SESSION_PRICES,
+} from "@/lib/service-promo";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -904,7 +908,7 @@ const SERVICE_TABS: Record<string, Service[]> = {
       title: "All Channel Omnichannel",
       price: ADS_SERVICE_PROMOS["All Channel Omnichannel"].regularPrice,
       promoPrice: ADS_SERVICE_PROMOS["All Channel Omnichannel"].promoPrice,
-      sub: "(Omnichannel Ads Management)",
+      sub: "(Omnichannel Ads Management: TikTok Ads, Shopee Ads, CPAS/Meta Ads)",
       features: [
         "Testing dan optimasi",
         "Setup ads campaign",
@@ -917,40 +921,10 @@ const SERVICE_TABS: Record<string, Service[]> = {
       ],
     },
   ],
-  "Affiliate Management": [
-    {
-      title: "Basic Package",
-      price: "Rp 2.000.000 / Bulan",
-      sub: "(Untuk 1 SKU Unggulan)",
-      features: [
-        "Rekrut 50 Affiliate aktif sebulan",
-        "Riset affiliate potensial",
-        "Kontroling performa",
-        "Komunikasi harian",
-        "Laporan bulanan",
-        "Pembuatan konsep brief/SOW",
-        "Eksekusi program SKU unggulan",
-      ],
-    },
-    {
-      title: "Pro Package",
-      price: "Rp 3.000.000 / Bulan",
-      sub: "(Untuk 2 SKU Produk)",
-      features: [
-        "Rekrut 70 Affiliate aktif sebulan",
-        "Riset affiliate potensial",
-        "Kontroling performa",
-        "Komunikasi harian",
-        "Laporan bulanan",
-        "Pembuatan konsep brief/SOW",
-        "Eksekusi program 2 SKU",
-      ],
-    },
-  ],
   "Private Mentoring": [
     {
       title: "TikTok Shop Ads Mentoring",
-      price: "Rp 2.500.000",
+      price: MENTORING_SESSION_PRICES["TikTok Shop Ads Mentoring"],
       sub: "",
       features: [
         "Materi fundamental algoritma TikTok Ads",
@@ -959,12 +933,11 @@ const SERVICE_TABS: Record<string, Service[]> = {
         "Fase testing awal",
         "Template penunjang",
         "Rekaman sesi",
-        "Free 1 sesi konsultasi 30 menit via Zoom",
       ],
     },
     {
       title: "Shopee Ads Mentoring",
-      price: "Rp 1.500.000",
+      price: MENTORING_SESSION_PRICES["Shopee Ads Mentoring"],
       sub: "",
       features: [
         "Materi fundamental Shopee",
@@ -978,7 +951,7 @@ const SERVICE_TABS: Record<string, Service[]> = {
     },
     {
       title: "CPAS Ads Mentoring",
-      price: "Rp 2.000.000",
+      price: MENTORING_SESSION_PRICES["CPAS Ads Mentoring"],
       sub: "",
       features: [
         "Materi fundamental CPAS",
@@ -992,7 +965,7 @@ const SERVICE_TABS: Record<string, Service[]> = {
     },
     {
       title: "Meta Ads Mentoring",
-      price: "Rp 2.000.000",
+      price: MENTORING_SESSION_PRICES["Meta Ads Mentoring"],
       sub: "",
       features: [
         "Materi fundamental Meta Ads",
@@ -1087,7 +1060,7 @@ function Services() {
           <div className="mx-auto mt-8 max-w-3xl rounded-2xl border border-sage/25 bg-surface p-5 text-sm text-muted-foreground">
             <span className="font-semibold text-sage">Benefit:</span> Sesi privat via Google
             Meet/Zoom, praktik langsung dengan dashboard bisnis Anda sendiri, rekaman sesi
-            pembelajaran, dan akses tanya-jawab via WhatsApp selama periode program berjalan.
+            pembelajaran.
           </div>
         )}
 
@@ -1172,7 +1145,7 @@ const FAQS = [
   },
   {
     q: "Apakah layanan Ads Management juga termasuk mencari affiliate dan membuat brief konten harian?",
-    a: "Untuk layanan Ads Management, fokus utama kami murni pada eksekusi dan optimasi iklan berbayar (Performance Ads). Pencarian kreator affiliate dan penyusunan brief konten harian tidak termasuk secara teknis di dalam paket ini. Namun, kami akan tetap memberikan saran dan action plan strategis—seperti insight angle konten yang winning atau rekomendasi aktivasi kampanye—untuk menunjang performa GMV Anda secara keseluruhan. (Catatan: Jika brand Anda membutuhkan bantuan pengelolaan kreator, kami memiliki paket layanan terpisah yaitu Affiliate Management).",
+    a: "Untuk layanan Ads Management, fokus utama kami murni pada eksekusi dan optimasi iklan berbayar (Performance Ads). Pencarian kreator affiliate dan penyusunan brief konten harian tidak termasuk secara teknis di dalam paket ini. Namun, kami akan tetap memberikan saran dan action plan strategis—seperti insight angle konten yang winning atau rekomendasi aktivasi kampanye—untuk menunjang performa GMV Anda secara keseluruhan.",
   },
   {
     q: "Bagaimana sistem pelaporan?",

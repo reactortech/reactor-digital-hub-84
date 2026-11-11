@@ -1,5 +1,9 @@
 import { describe, expect, test } from "bun:test";
-import { ADS_SERVICE_PROMOS, getJakartaMonthEndCountdown } from "../src/lib/service-promo";
+import {
+  ADS_SERVICE_PROMOS,
+  getJakartaMonthEndCountdown,
+  MENTORING_SESSION_PRICES,
+} from "../src/lib/service-promo";
 
 describe("Ads Management promotion", () => {
   test("uses the requested regular and discounted monthly prices", () => {
@@ -33,6 +37,17 @@ describe("Ads Management promotion", () => {
       hours: 21,
       minutes: 52,
       seconds: 59,
+    });
+  });
+});
+
+describe("Private Mentoring session prices", () => {
+  test("uses the requested per-session prices", () => {
+    expect(MENTORING_SESSION_PRICES).toEqual({
+      "TikTok Shop Ads Mentoring": "Rp 500.000 / Sesi",
+      "Shopee Ads Mentoring": "Rp 350.000 / Sesi",
+      "CPAS Ads Mentoring": "Rp 350.000 / Sesi",
+      "Meta Ads Mentoring": "Rp 350.000 / Sesi",
     });
   });
 });
