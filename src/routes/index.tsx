@@ -15,6 +15,7 @@ import {
 import logo from "@/assets/logo_reactordigital.png";
 import { buildAuditText, buildWaUrl, defaultConsultText, openWa } from "@/lib/whatsapp";
 import { CASE_STUDIES, CATEGORIES, PLATFORMS, type CaseStudy } from "@/lib/case-studies";
+import { ADS_SERVICE_PROMOS, getJakartaMonthEndCountdown } from "@/lib/service-promo";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -25,6 +26,17 @@ export const Route = createFileRoute("/")({
         content:
           "Scale-up brand berbasis data. TikTok Ads, Shopee Ads, CPAS, Meta Ads oleh Reactor Digital.",
       },
+      {
+        property: "og:title",
+        content: "Reactor Digital — Performance Marketing Agency",
+      },
+      {
+        property: "og:description",
+        content:
+          "Scale-up brand berbasis data. TikTok Ads, Shopee Ads, CPAS, Meta Ads oleh Reactor Digital.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Landing,
@@ -192,8 +204,8 @@ function Hero() {
             Kami adalah agensi Performance Marketing spesialis akselerasi growth yang telah
             dipercaya lebih dari puluhan brand sebagai growth partner. Berfokus pada TikTok Ads,
             Shopee Ads, CPAS, dan Meta Ads, kami tidak sekadar mengelola dan mengoptimasi iklan,
-            tetapi juga memberikan insight bisnis up-to-date melalui komunikasi dua arah yang
-            intens dan transparansi data sepenuhnya..
+            tetapi juga memberikan insight bisnis up-to-date melalui komunikasi dua arah yang intens
+            dan transparansi data sepenuhnya..
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
             <button
@@ -372,7 +384,6 @@ const TRACK_RECORDS = [
   },
 ];
 
-
 function TrackRecordLightbox({
   src,
   alt,
@@ -475,7 +486,6 @@ function TrackRecord() {
 }
 
 /* ---------------- case studies ---------------- */
-
 
 function CaseCard({ item, onOpen }: { item: CaseStudy; onOpen: () => void }) {
   return (
@@ -592,7 +602,9 @@ function CaseModal({ item, onClose }: { item: CaseStudy; onClose: () => void }) 
         </div>
 
         <button
-          onClick={() => openWa(`Halo Reactor Digital, saya tertarik membahas case study "${item.title}".`)}
+          onClick={() =>
+            openWa(`Halo Reactor Digital, saya tertarik membahas case study "${item.title}".`)
+          }
           className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-sage px-5 py-3 text-sm font-semibold text-sage-foreground"
         >
           <MessageCircle className="h-4 w-4" /> Diskusi Strategi Serupa
@@ -765,7 +777,6 @@ function Workflow() {
               </div>
             ))}
           </div>
-
         </div>
       </div>
     </section>
@@ -801,10 +812,7 @@ function Collaborate() {
           { title: "Tim internal Anda tetap berfokus pada:", items: left },
           { title: "Kami mengoptimalkan potensi yang sudah ada dengan:", items: right },
         ].map((c) => (
-          <div
-            key={c.title}
-            className="rounded-2xl border border-sage/25 bg-surface p-7"
-          >
+          <div key={c.title} className="rounded-2xl border border-sage/25 bg-surface p-7">
             <h3 className="text-base font-semibold text-foreground">{c.title}</h3>
             <ul className="mt-5 space-y-3">
               {c.items.map((it) => (
@@ -826,6 +834,7 @@ function Collaborate() {
 type Service = {
   title: string;
   price: string;
+  promoPrice?: string;
   sub: string;
   features: string[];
 };
@@ -834,7 +843,8 @@ const SERVICE_TABS: Record<string, Service[]> = {
   "Ads Management": [
     {
       title: "TikTok Shop Ads",
-      price: "Rp 3.500.000 / Bulan",
+      price: ADS_SERVICE_PROMOS["TikTok Shop Ads"].regularPrice,
+      promoPrice: ADS_SERVICE_PROMOS["TikTok Shop Ads"].promoPrice,
       sub: "(Untuk 1 Toko)",
       features: [
         "Testing dan optimasi",
@@ -848,7 +858,8 @@ const SERVICE_TABS: Record<string, Service[]> = {
     },
     {
       title: "Shopee Ads",
-      price: "Rp 2.500.000 / Bulan",
+      price: ADS_SERVICE_PROMOS["Shopee Ads"].regularPrice,
+      promoPrice: ADS_SERVICE_PROMOS["Shopee Ads"].promoPrice,
       sub: "(Untuk 1 Toko)",
       features: [
         "Testing dan optimasi",
@@ -861,7 +872,8 @@ const SERVICE_TABS: Record<string, Service[]> = {
     },
     {
       title: "CPAS Ads",
-      price: "Rp 2.500.000 / Bulan",
+      price: ADS_SERVICE_PROMOS["CPAS Ads"].regularPrice,
+      promoPrice: ADS_SERVICE_PROMOS["CPAS Ads"].promoPrice,
       sub: "(Untuk 1 Toko)",
       features: [
         "Testing dan optimasi",
@@ -875,7 +887,8 @@ const SERVICE_TABS: Record<string, Service[]> = {
     },
     {
       title: "Meta Ads (Lead Gen)",
-      price: "Rp 3.500.000 / Bulan",
+      price: ADS_SERVICE_PROMOS["Meta Ads (Lead Gen)"].regularPrice,
+      promoPrice: ADS_SERVICE_PROMOS["Meta Ads (Lead Gen)"].promoPrice,
       sub: "(Suplai leads untuk 1 brand/produk)",
       features: [
         "Testing dan optimasi",
@@ -889,7 +902,8 @@ const SERVICE_TABS: Record<string, Service[]> = {
     },
     {
       title: "All Channel Omnichannel",
-      price: "Rp 11.000.000 / Bulan",
+      price: ADS_SERVICE_PROMOS["All Channel Omnichannel"].regularPrice,
+      promoPrice: ADS_SERVICE_PROMOS["All Channel Omnichannel"].promoPrice,
       sub: "(Omnichannel Ads Management)",
       features: [
         "Testing dan optimasi",
@@ -1008,6 +1022,26 @@ const SERVICE_TABS: Record<string, Service[]> = {
   ],
 };
 
+function PromoCountdown() {
+  const [remaining, setRemaining] = useState<ReturnType<typeof getJakartaMonthEndCountdown> | null>(
+    null,
+  );
+
+  useEffect(() => {
+    const updateCountdown = () => setRemaining(getJakartaMonthEndCountdown(new Date()));
+    updateCountdown();
+    const interval = window.setInterval(updateCountdown, 1000);
+    return () => window.clearInterval(interval);
+  }, []);
+
+  const pad = (value: number) => String(value).padStart(2, "0");
+  const label = remaining
+    ? `${remaining.days} hari ${pad(remaining.hours)}:${pad(remaining.minutes)}:${pad(remaining.seconds)}`
+    : "—";
+
+  return <time className="font-semibold tabular-nums text-foreground">{label}</time>;
+}
+
 function Services() {
   const tabs = Object.keys(SERVICE_TABS);
   const [tab, setTab] = useState(tabs[0]);
@@ -1021,6 +1055,17 @@ function Services() {
             Investasi Growth Yang Terukur
           </h2>
         </div>
+        {tab === "Ads Management" && (
+          <div className="mx-auto mt-6 flex max-w-fit flex-wrap items-center justify-center gap-x-2 gap-y-1 rounded-full border border-sage/25 bg-surface px-4 py-2 text-center text-xs text-muted-foreground sm:text-sm">
+            <span className="font-semibold text-sage">Diskon 20% semua layanan bulan ini</span>
+            <span aria-hidden="true">·</span>
+            <span>Sisa 3 slot</span>
+            <span aria-hidden="true">·</span>
+            <span>
+              berakhir dalam <PromoCountdown />
+            </span>
+          </div>
+        )}
         <div className="mt-8 flex flex-wrap justify-center gap-2">
           {tabs.map((t) => (
             <button
@@ -1040,9 +1085,9 @@ function Services() {
 
         {tab === "Private Mentoring" && (
           <div className="mx-auto mt-8 max-w-3xl rounded-2xl border border-sage/25 bg-surface p-5 text-sm text-muted-foreground">
-            <span className="font-semibold text-sage">Benefit:</span> Sesi privat via Google Meet/Zoom,
-            praktik langsung dengan dashboard bisnis Anda sendiri, rekaman sesi pembelajaran, dan
-            akses tanya-jawab via WhatsApp selama periode program berjalan.
+            <span className="font-semibold text-sage">Benefit:</span> Sesi privat via Google
+            Meet/Zoom, praktik langsung dengan dashboard bisnis Anda sendiri, rekaman sesi
+            pembelajaran, dan akses tanya-jawab via WhatsApp selama periode program berjalan.
           </div>
         )}
 
@@ -1052,8 +1097,27 @@ function Services() {
               key={s.title}
               className="flex flex-col rounded-2xl border border-hairline bg-surface p-6 transition-colors hover:border-sage/40"
             >
-              <h3 className="text-base font-semibold text-foreground">{s.title}</h3>
-              <div className="mt-3 font-display text-2xl font-bold text-sage">{s.price}</div>
+              <div className="flex items-start justify-between gap-3">
+                <h3 className="text-base font-semibold text-foreground">{s.title}</h3>
+                {s.promoPrice && (
+                  <span className="shrink-0 rounded-full bg-sage/10 px-2.5 py-1 text-[11px] font-semibold text-sage">
+                    Diskon 20%
+                  </span>
+                )}
+              </div>
+              {s.promoPrice ? (
+                <div className="mt-3">
+                  <div className="text-sm text-muted-foreground line-through">{s.price}</div>
+                  <div className="mt-0.5 font-display text-2xl font-bold text-sage">
+                    {s.promoPrice}
+                  </div>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    Harga promo dikunci selama kontrak pertama 3 bulan
+                  </p>
+                </div>
+              ) : (
+                <div className="mt-3 font-display text-2xl font-bold text-sage">{s.price}</div>
+              )}
               <div className="text-xs text-muted-foreground">{s.sub}</div>
               <ul className="mt-5 flex-1 space-y-2.5">
                 {s.features.map((f) => (
@@ -1064,7 +1128,9 @@ function Services() {
                 ))}
               </ul>
               <button
-                onClick={() => openWa(`Halo Reactor Digital, saya tertarik dengan layanan *${s.title}*.`)}
+                onClick={() =>
+                  openWa(`Halo Reactor Digital, saya tertarik dengan layanan *${s.title}*.`)
+                }
                 className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-sage px-4 py-2.5 text-sm font-semibold text-sage-foreground"
               >
                 <MessageCircle className="h-4 w-4" /> Ambil Layanan
@@ -1148,9 +1214,7 @@ function Faq() {
                 </span>
               </button>
               {isOpen && (
-                <div className="px-5 pb-5 text-sm leading-relaxed text-muted-foreground">
-                  {f.a}
-                </div>
+                <div className="px-5 pb-5 text-sm leading-relaxed text-muted-foreground">{f.a}</div>
               )}
             </div>
           );
@@ -1454,9 +1518,13 @@ function Footer() {
         </div>
         <div className="flex flex-col items-start gap-2 md:items-end">
           <div className="flex gap-4 text-xs text-muted-foreground">
-            <a href="#" className="hover:text-foreground">Pribadi</a>
+            <a href="#" className="hover:text-foreground">
+              Pribadi
+            </a>
             <span>|</span>
-            <a href="#" className="hover:text-foreground">Syarat & Ketentuan</a>
+            <a href="#" className="hover:text-foreground">
+              Syarat & Ketentuan
+            </a>
           </div>
           <div className="text-[11px] text-muted-foreground">
             © 2026 Reactor Digital. Yogyakarta, Indonesia. Privasi | Syarat & Ketentuan
